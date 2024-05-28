@@ -43,10 +43,11 @@ var feedrPingFunc = func(btitle, slug string) error {
 
 // rpcPingParam ping to rpc, eg. google baidu
 // params:
-//	 BlogName string `xml:"param>value>string"`
-//	 HomePage string `xml:"param>value>string"`
-//	 Article  string `xml:"param>value>string"`
-//	 RSS_URL  string `xml:"param>value>string"`
+//
+//	BlogName string `xml:"param>value>string"`
+//	HomePage string `xml:"param>value>string"`
+//	Article  string `xml:"param>value>string"`
+//	RSS_URL  string `xml:"param>value>string"`
 type rpcPingParam struct {
 	XMLName    xml.Name `xml:"methodCall"`
 	MethodName string   `xml:"methodName"`
@@ -93,7 +94,7 @@ var rpcPingFunc = func(btitle, slug string) error {
 			continue
 		}
 		if resp.StatusCode != 200 {
-			logrus.Error("rpcPingFunc.failed: ", string(data))
+			logrus.Error("rpcPingFunc.failed: ", string(data), resp.StatusCode)
 		}
 	}
 	return nil
