@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.14](https://github.com/eiblog/eiblog/compare/v2.2.13...v2.2.14) (2024-10-10)
+
+
+### Bug Fixes
+
+* 1. bei_an cannot  update error ([b53fc91](https://github.com/eiblog/eiblog/commit/b53fc91ce7b67c3811c232ad6236898f84bc391b)), closes [#43](https://github.com/eiblog/eiblog/issues/43) [#44](https://github.com/eiblog/eiblog/issues/44)
+* **serie:** update serie did not rerender ([88f23bd](https://github.com/eiblog/eiblog/commit/88f23bd1a0d6183d6de484cb79303506f0506d15))
+
 ### [2.2.13](https://github.com/eiblog/eiblog/compare/v2.2.12...v2.2.13) (2024-01-02)
 
 
