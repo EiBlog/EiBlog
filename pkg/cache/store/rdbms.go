@@ -144,7 +144,7 @@ func (db *rdbms) RemoveArticle(ctx context.Context, id int) error {
 
 // CleanArticles 清理回收站文章
 func (db *rdbms) CleanArticles(ctx context.Context, exp time.Time) error {
-	return db.Where("deleted_at BETWEEN ? AND ?", time.Time{}, exp).Delete(model.Article{}).Error
+	return db.Where("deleted_at > ? AND deleted_at < ?", time.Time{}, exp).Delete(model.Article{}).Error
 }
 
 // UpdateArticle 更新文章

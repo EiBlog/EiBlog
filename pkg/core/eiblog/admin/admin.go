@@ -94,6 +94,7 @@ func handleAPIBlogger(c *gin.Context) {
 	err := cache.Ei.UpdateBlogger(context.Background(), map[string]interface{}{
 		"blog_name":    bn,
 		"b_title":      bt,
+		"bei_an":       ba,
 		"sub_title":    st,
 		"series_say":   ss,
 		"archives_say": as,
