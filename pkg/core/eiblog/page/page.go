@@ -18,7 +18,7 @@ var htmlTmpl *template.Template
 func init() {
 	htmlTmpl = template.New("eiblog").Funcs(tools.TplFuncMap)
 	root := filepath.Join(config.WorkDir, "website")
-	files := tools.ReadDirFiles(root, func(fi fs.FileInfo) bool {
+	files := tools.ReadDirFiles(root, func(fi fs.DirEntry) bool {
 		name := fi.Name()
 		if name == ".DS_Store" {
 			return true

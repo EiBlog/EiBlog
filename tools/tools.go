@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"io/ioutil"
+	"os"
 	"path"
 	"regexp"
 	"time"
@@ -23,8 +23,8 @@ func EncryptPasswd(name, pass string) string {
 }
 
 // ReadDirFiles 读取目录
-func ReadDirFiles(dir string, filter func(fi fs.FileInfo) bool) (files []string) {
-	fileInfos, err := ioutil.ReadDir(dir)
+func ReadDirFiles(dir string, filter func(fi fs.DirEntry) bool) (files []string) {
+	fileInfos, err := os.ReadDir(dir)
 	if err != nil {
 		return
 	}

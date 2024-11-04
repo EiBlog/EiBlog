@@ -2,7 +2,6 @@
 package config
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -147,7 +146,7 @@ func init() {
 	WorkDir = workDir()
 	path := filepath.Join(WorkDir, "conf", "app.yml")
 
-	data, err := ioutil.ReadFile(path)
+	data, err := os.ReadFile(path)
 	if err != nil {
 		panic(err)
 	}

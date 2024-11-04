@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 	htemplate "html/template"
-	"io/ioutil"
+	"io"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -370,7 +370,7 @@ func handleBeaconPage(c *gin.Context) {
 			return
 		}
 		defer res.Body.Close()
-		data, err := ioutil.ReadAll(res.Body)
+		data, err := io.ReadAll(res.Body)
 		if err != nil {
 			logrus.Error("HandleBeaconPage.ReadAll: ", err)
 			return

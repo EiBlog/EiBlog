@@ -4,7 +4,7 @@ package tools
 import (
 	"encoding/base64"
 	htmpl "html/template"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -62,7 +62,7 @@ func GetAvatar(domain string) string {
 		}
 		defer resp.Body.Close()
 
-		data, err := ioutil.ReadAll(resp.Body)
+		data, err := io.ReadAll(resp.Body)
 		if err != nil {
 			log.Println(err)
 			return ""

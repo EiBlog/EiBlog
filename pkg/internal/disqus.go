@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -71,7 +71,7 @@ func PostsCount(articles map[string]*model.Article) error {
 		}
 		defer resp.Body.Close()
 
-		b, err := ioutil.ReadAll(resp.Body)
+		b, err := io.ReadAll(resp.Body)
 		if err != nil {
 			return err
 		}
@@ -91,7 +91,9 @@ func PostsCount(articles map[string]*model.Article) error {
 
 			if article := articles[slug]; article != nil {
 				article.Count = v.Posts
-				article.Thread = v.ID
+				if article.Thread == "" && v.ID != "" {
+					article.Thread = v.ID
+				}
 			}
 		}
 	}
@@ -144,7 +146,7 @@ func PostsList(article *model.Article, cursor string) (*PostsListResp, error) {
 	}
 	defer resp.Body.Close()
 
-	b, err := ioutil.ReadAll(resp.Body)
+	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -198,7 +200,7 @@ func PostCreate(pc *PostComment) (*PostCreateResp, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
-	b, err := ioutil.ReadAll(resp.Body)
+	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -240,7 +242,7 @@ func PostApprove(post string) error {
 	}
 	defer resp.Body.Close()
 
-	b, err := ioutil.ReadAll(resp.Body)
+	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -282,7 +284,7 @@ func ThreadCreate(article *model.Article, btitle string) error {
 		return err
 	}
 
-	b, err := ioutil.ReadAll(resp.Body)
+	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -325,7 +327,7 @@ func ThreadDetails(article *model.Article) error {
 		return err
 	}
 
-	b, err := ioutil.ReadAll(resp.Body)
+	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
