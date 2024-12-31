@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.15](https://github.com/eiblog/eiblog/compare/v2.2.14...v2.2.15) (2024-12-31)
+
+
+### Bug Fixes
+
+* disqus list posts ([52fe730](https://github.com/eiblog/eiblog/commit/52fe7303f3345421c0f2e2989a6c174d5b1a689e))
+* disqus thread not store ([616248d](https://github.com/eiblog/eiblog/commit/616248d33fdf44dbc3aed41e92adae001a4f5577))
+
 ### [2.2.14](https://github.com/eiblog/eiblog/compare/v2.2.13...v2.2.14) (2024-10-10)
 
 
