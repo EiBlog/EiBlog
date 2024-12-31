@@ -288,14 +288,14 @@ func handleAPIPostCreate(c *gin.Context) {
 		cid = article.ID
 
 		if !article.IsDraft {
+			// disqus
+			internal.ThreadCreate(article, cache.Ei.Blogger.BTitle)
 			// 异步执行，快
 			go func() {
 				// elastic
 				internal.ElasticAddIndex(article)
 				// rss
 				internal.PingFunc(cache.Ei.Blogger.BTitle, slug)
-				// disqus
-				internal.ThreadCreate(article, cache.Ei.Blogger.BTitle)
 			}()
 		}
 		return
@@ -327,16 +327,16 @@ func handleAPIPostCreate(c *gin.Context) {
 	}
 	if !article.IsDraft {
 		cache.Ei.RepArticle(artc, article)
+		// disqus
+		if artc == nil {
+			internal.ThreadCreate(article, cache.Ei.Blogger.BTitle)
+		}
 		// 异步执行，快
 		go func() {
 			// elastic
 			internal.ElasticAddIndex(article)
 			// rss
 			internal.PingFunc(cache.Ei.Blogger.BTitle, slug)
-			// disqus
-			if artc == nil {
-				internal.ThreadCreate(article, cache.Ei.Blogger.BTitle)
-			}
 		}()
 	}
 }
