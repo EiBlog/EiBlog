@@ -135,7 +135,7 @@ func PostsList(article *model.Article, cursor string) (*PostsListResp, error) {
 	vals := url.Values{}
 	vals.Set("api_key", disqusAPIKey)
 	vals.Set("forum", config.Conf.EiBlogApp.Disqus.ShortName)
-	vals.Set("thread", article.Thread)
+	vals.Set("thread:ident", "post-"+article.Slug)
 	vals.Set("cursor", cursor)
 	vals.Set("order", "popular")
 	vals.Set("limit", "50")
